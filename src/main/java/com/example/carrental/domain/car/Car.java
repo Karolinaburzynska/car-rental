@@ -1,10 +1,9 @@
-package com.example.carrental.domain;
+package com.example.carrental.domain.car;
 
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Car {
