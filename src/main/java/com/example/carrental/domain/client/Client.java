@@ -1,7 +1,10 @@
 package com.example.carrental.domain.client;
 
+import com.example.carrental.domain.booking.Booking;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+
+import java.util.List;
 
 @Entity
 public class Client {
@@ -18,6 +21,9 @@ public class Client {
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private List<Booking> bookings;
 
     public Long getId() {
         return id;
@@ -59,4 +65,11 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }

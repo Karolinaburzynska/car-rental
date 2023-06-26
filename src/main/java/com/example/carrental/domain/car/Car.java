@@ -1,9 +1,11 @@
 package com.example.carrental.domain.car;
 
+import com.example.carrental.domain.booking.Booking;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Car {
@@ -22,6 +24,9 @@ public class Car {
     @Column(name = "cost_per_day")
     private BigDecimal costPerDay;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
+    private List<Booking> bookings;
+
 
     public Car() {
     }
@@ -32,6 +37,14 @@ public class Car {
         this.color = color;
         this.status = status;
         this.costPerDay = costPerDay;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public Long getId() {
