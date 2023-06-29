@@ -1,4 +1,4 @@
-package com.example.carrental.api;
+package com.example.carrental.api.employee;
 
 import com.example.carrental.domain.employee.Position;
 

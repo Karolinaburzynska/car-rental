@@ -1,15 +1,12 @@
-package com.example.carrental.api;
+package com.example.carrental.api.employee;
 
 import com.example.carrental.domain.employee.Employee;
 import com.example.carrental.domain.employee.EmployeeServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import static com.example.carrental.api.EmployeeController.BASE_PATH_EMPLOYEE;
+import static com.example.carrental.api.employee.EmployeeController.BASE_PATH_EMPLOYEE;
 
 @RestController
 @RequestMapping(BASE_PATH_EMPLOYEE)
@@ -27,6 +24,11 @@ public class EmployeeController {
     public ResponseEntity<Employee> registerNewEmployee(@RequestBody EmployeeRegisterRequest request) {
         Employee newEmployee = employeeService.registerNewEmployee(request.name(), request.surname(), request.position());
         return ResponseEntity.status(HttpStatus.CREATED).body(newEmployee);
+    }
+
+    @GetMapping("/{employeeId}")
+    ResponseEntity<EmployeeDto> getSingleEmployee(@PathVariable Long employeeId){
+        return ResponseEntity.of(employeeService.getEmployee(employeeId).map(EmployeeDto::fromDomain));
     }
 }
 
