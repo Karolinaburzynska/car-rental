@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl  implements CarService{
@@ -19,5 +20,10 @@ public class CarServiceImpl  implements CarService{
     public Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, Status status, BigDecimal costPerDay) {
         Car car = new Car(brand,  dateOfProduction,color,status,costPerDay);
         return carRepository.save(car);
+    }
+
+    @Override
+    public Optional<Car> getCar(Long carId) {
+        return carRepository.findById(carId);
     }
 }
