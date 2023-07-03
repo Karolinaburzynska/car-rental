@@ -1,6 +1,7 @@
 package com.example.carrental.domain.booking;
 
 import com.example.carrental.domain.car.Car;
+import com.example.carrental.domain.car.Status;
 import com.example.carrental.domain.employee.Employee;
 import com.example.carrental.domain.client.Client;
 import jakarta.persistence.*;
@@ -22,24 +23,24 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY)
 
     private Car car;
+    private Status carStatus = Status.AVAILABLE;
 
     private LocalDate rentDate;
 
     private LocalDate returnDate;
 
 
-
-
     public Booking() {
     }
 
-    public Booking(Employee employeeId, Client clientId, Car car, LocalDate rentDate, LocalDate returnDate) {
-        this.employee = employeeId;
-        this.client = clientId;
+    public Booking(Long id, Employee employee, Client client, Car car, Status carStatus, LocalDate rentDate, LocalDate returnDate) {
+        this.id = id;
+        this.employee = employee;
+        this.client = client;
         this.car = car;
+        this.carStatus = carStatus;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
-
     }
 
     public Long getId() {
@@ -90,4 +91,19 @@ public class Booking {
         this.returnDate = returnDate;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Status getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(Status carStatus) {
+        this.carStatus = carStatus;
+    }
 }

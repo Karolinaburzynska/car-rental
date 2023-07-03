@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public interface CarService {
-    Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, Status status, BigDecimal costPerDay);
+    Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, BigDecimal costPerDay);
+
     Optional<Car> getCar(Long carId);
 }

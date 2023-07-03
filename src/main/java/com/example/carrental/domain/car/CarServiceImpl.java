@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
-public class CarServiceImpl  implements CarService{
+public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
 
@@ -17,8 +17,8 @@ public class CarServiceImpl  implements CarService{
     }
 
     @Override
-    public Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, Status status, BigDecimal costPerDay) {
-        Car car = new Car(brand,  dateOfProduction,color,status,costPerDay);
+    public Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, BigDecimal costPerDay) {
+        Car car = new Car(brand, dateOfProduction, color, costPerDay);
         return carRepository.save(car);
     }
 

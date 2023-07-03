@@ -24,11 +24,12 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<Car> addNewCar(@RequestBody @Valid CarRegisterRequest request) {
-        Car newCar = carService.addNewCar(request.brand(), request.color(), request.dateOfProduction(), request.status(), request.costPerDay());
+        Car newCar = carService.addNewCar(request.brand(), request.color(), request.dateOfProduction(), request.costPerDay());
         return ResponseEntity.status(HttpStatus.CREATED).body(newCar);
     }
+
     @GetMapping("/{carId}")
-    ResponseEntity<CarDto> getSingleCar(@PathVariable Long carId){
+    ResponseEntity<CarDto> getSingleCar(@PathVariable Long carId) {
         return ResponseEntity.of(carService.getCar(carId).map(CarDto::fromDomain));
     }
 }

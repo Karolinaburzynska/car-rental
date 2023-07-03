@@ -19,8 +19,7 @@ public class Car {
     private LocalDate dateOfProduction;
     @Column(name = "color")
     private String color;
-    @Column(name = "status")
-    private Status status;
+
     @Column(name = "cost_per_day")
     private BigDecimal costPerDay;
 
@@ -31,11 +30,10 @@ public class Car {
     public Car() {
     }
 
-    public Car(Brand brand, LocalDate dateOfProduction, String color, Status status, BigDecimal costPerDay) {
+    public Car(Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay) {
         this.brand = brand;
         this.dateOfProduction = dateOfProduction;
         this.color = color;
-        this.status = status;
         this.costPerDay = costPerDay;
     }
 
@@ -77,14 +75,6 @@ public class Car {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public BigDecimal getCostPerDay() {
