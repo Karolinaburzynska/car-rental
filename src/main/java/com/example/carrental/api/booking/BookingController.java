@@ -5,10 +5,7 @@ import com.example.carrental.domain.booking.BookingUnavailableVehicleException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import com.example.carrental.domain.booking.Booking;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import static com.example.carrental.api.booking.BookingController.BASE_PATH_BOOKING;
@@ -31,6 +28,11 @@ public class BookingController {
         Booking newBooking = bookingService.addNewBooking(request.employeeId(), request.clientId(), request.carId(), request.rentDate(), request.returnDate());
         BookingResponseDto bookingResponseDto = BookingResponseDto.fromDomain(newBooking);
         return ResponseEntity.created(URI.create("/bookings" + bookingResponseDto.bookingId())).body(bookingResponseDto);
+    }
+
+    @GetMapping("/{bookingId}/status")
+    ResponseEntity<BookingDetailsDto> getSingleBookingStatus( @PathVariable Long bookingId) {
+        return ResponseEntity.of(bookingService.getBookingDetails(bookingId).map(BookingDetailsDto::fromDomain));
     }
 
 }

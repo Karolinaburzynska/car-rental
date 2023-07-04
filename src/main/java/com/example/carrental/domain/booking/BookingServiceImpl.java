@@ -10,7 +10,10 @@ import com.example.carrental.infrastructure.ClientRepository;
 import com.example.carrental.infrastructure.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -42,4 +45,27 @@ public class BookingServiceImpl implements BookingService {
             throw new BookingUnavailableVehicleException("Cannot book rent vehicle.");
         }
     }
+
+    @Override
+    public Optional<BookingDetails> getBookingDetails(Long bookingId) {
+        Optional<Booking> booking = bookingRepository.findById(bookingId);
+        BigDecimal calculateSumOf = calculateSumOf(booking);
+        return booking.map(foundBooking -> new BookingDetails(
+                foundBooking.getId(),
+                foundBooking.getCarId(),
+                foundBooking.getClientId(),
+                calculateSumOf
+        ));
+    }
+
+    private static BigDecimal calculateSumOf(Optional<Booking> booking) {
+
+        Duration difference = Duration.between(booking.get().getRentDate().atStartOfDay(), booking.get().getReturnDate().atStartOfDay());
+        int days = (int) difference.toDays();
+        BigDecimal costPerDay = booking.get().getCarId().getCostPerDay();
+        BigDecimal totalSum = costPerDay.multiply(BigDecimal.valueOf(days));
+        return totalSum;
+    }
+
+
 }
