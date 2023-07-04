@@ -8,4 +8,9 @@ public interface CarService {
     Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, BigDecimal costPerDay);
 
     Optional<Car> getCar(Long carId);
+
+
+
+
+
 }

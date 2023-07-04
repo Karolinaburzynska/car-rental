@@ -16,14 +16,14 @@ public class Booking {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
 
-    private Employee employee;
+    private Employee employeeId;
     @ManyToOne(fetch = FetchType.LAZY)
 
-    private Client client;
+    private Client clientId;
     @ManyToOne(fetch = FetchType.LAZY)
 
-    private Car car;
-    private Status carStatus = Status.AVAILABLE;
+    private Car carId;
+    private Status carStatus;
 
     private LocalDate rentDate;
 
@@ -33,12 +33,11 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Long id, Employee employee, Client client, Car car, Status carStatus, LocalDate rentDate, LocalDate returnDate) {
-        this.id = id;
-        this.employee = employee;
-        this.client = client;
-        this.car = car;
-        this.carStatus = carStatus;
+    public Booking( Employee employee, Client client, Car car, LocalDate rentDate, LocalDate returnDate) {
+        this.employeeId = employee;
+        this.clientId = client;
+        this.carStatus = Status.RENT;
+        this.carId = car;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
     }
@@ -51,28 +50,28 @@ public class Booking {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Employee getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employeeId) {
-        this.employee = employeeId;
+    public void setEmployeeId(Employee employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Client getClient() {
-        return client;
+    public Client getClientId() {
+        return clientId;
     }
 
-    public void setClient(Client clientId) {
-        this.client = clientId;
+    public void setClientId(Client clientId) {
+        this.clientId = clientId;
     }
 
     public Car getCarId() {
-        return car;
+        return carId;
     }
 
-    public void setCarId(Car car) {
-        this.car = car;
+    public void setCarId(Car carId) {
+        this.carId = carId;
     }
 
     public LocalDate getRentDate() {
@@ -91,13 +90,6 @@ public class Booking {
         this.returnDate = returnDate;
     }
 
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
     public Status getCarStatus() {
         return carStatus;
