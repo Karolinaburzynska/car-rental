@@ -17,7 +17,7 @@ public class Employee {
     @Column(name = "position")
     private Position position;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId")
     private List<Booking> bookings;
 
     public Employee() {

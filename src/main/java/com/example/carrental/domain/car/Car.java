@@ -23,7 +23,7 @@ public class Car {
     @Column(name = "cost_per_day")
     private BigDecimal costPerDay;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carId")
     private List<Booking> bookings;
 
 
@@ -35,6 +35,16 @@ public class Car {
         this.dateOfProduction = dateOfProduction;
         this.color = color;
         this.costPerDay = costPerDay;
+    }
+
+    public boolean isAvailableForDateRange(LocalDate startDate, LocalDate endDate) {
+
+        for (Booking booking : bookings) {
+            if (startDate.isBefore(booking.getReturnDate()) && endDate.isAfter(booking.getRentDate())) {
+                return false; // Samochód niedostępny w wybranym terminie
+            }
+        }
+        return true;
     }
 
     public List<Booking> getBookings() {

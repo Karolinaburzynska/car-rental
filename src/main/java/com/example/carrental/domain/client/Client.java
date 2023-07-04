@@ -22,7 +22,7 @@ public class Client {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientId")
     private List<Booking> bookings;
 
     public Long getId() {
