@@ -7,4 +7,5 @@ public interface BookingService {
 
     Booking addNewBooking(long employeeId, long clientId, long carId, LocalDate rentDate, LocalDate returnDate) throws BookingUnavailableVehicleException;
     Optional<BookingDetails> getBookingDetails(Long bookingId);
+    void deleteBooking (Long bookingId);
 }

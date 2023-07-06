@@ -58,6 +58,11 @@ public class BookingServiceImpl implements BookingService {
         ));
     }
 
+    @Override
+    public void deleteBooking(Long bookingId) {
+        bookingRepository.deleteById(bookingId);
+    }
+
     private static BigDecimal calculateSumOf(Optional<Booking> booking) {
 
         Duration difference = Duration.between(booking.get().getRentDate().atStartOfDay(), booking.get().getReturnDate().atStartOfDay());

@@ -35,4 +35,10 @@ public class BookingController {
         return ResponseEntity.of(bookingService.getBookingDetails(bookingId).map(BookingDetailsDto::fromDomain));
     }
 
+    @DeleteMapping("/{deleteBookingId}")
+    ResponseEntity<BookingResponseDto> deleteBookingById (@PathVariable Long deleteBookingId){
+        bookingService.deleteBooking(deleteBookingId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
