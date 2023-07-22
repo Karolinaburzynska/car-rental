@@ -1,6 +1,7 @@
 package com.example.carrental.domain.car;
 
 import com.example.carrental.domain.booking.Booking;
+import com.example.carrental.domain.department.Department;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -23,6 +24,8 @@ public class Car {
     @Column(name = "cost_per_day")
     private BigDecimal costPerDay;
 
+    @Column(name = "department")
+    private Department department;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carId")
     private List<Booking> bookings;
 
@@ -30,11 +33,12 @@ public class Car {
     public Car() {
     }
 
-    public Car(Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay) {
+    public Car(Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay, Department department) {
         this.brand = brand;
         this.dateOfProduction = dateOfProduction;
         this.color = color;
         this.costPerDay = costPerDay;
+        this.department = department;
     }
 
     public boolean isAvailableForDateRange(LocalDate startDate, LocalDate endDate) {
@@ -95,4 +99,11 @@ public class Car {
         this.costPerDay = costPerDay;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.carrental.domain.employee;
 
 import com.example.carrental.domain.booking.Booking;
+import com.example.carrental.domain.department.Department;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,8 +18,13 @@ public class Employee {
     @Column(name = "position")
     private Position position;
 
+    @Column(name = "department")
+    private Department department;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId")
     private List<Booking> bookings;
+
+
 
     public Employee() {
     }
