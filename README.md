@@ -13,6 +13,5 @@ Car Rental is a system that allows you to run a car rental company. The system a
 
 ### Creating a user account
 ### Creating a employee account
-### Creating a employee account
-### Aility to add a new car
+### Ability to add a new car
 ### Creating a reservation for a selected user and car
