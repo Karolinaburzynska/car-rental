@@ -20,7 +20,7 @@ public class CarServiceImpl  implements CarService{
 
     @Override
     public Car addNewCar(Brand brand, String color, LocalDate dateOfProduction, BigDecimal costPerDay) {
-        Car car = new Car(brand,  dateOfProduction,color,costPerDay);
+        Car car = new Car(brand,dateOfProduction,color,costPerDay);
         return carRepository.save(car);
     }
 
@@ -29,6 +29,10 @@ public class CarServiceImpl  implements CarService{
         return carRepository.findById(carId);
     }
 
+    @Override
+    public Car updateCar(Car car) {
+        return carRepository.save(car);
+    }
 
 
 }

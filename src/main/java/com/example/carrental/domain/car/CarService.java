@@ -9,6 +9,8 @@ public interface CarService {
 
     Optional<Car> getCar(Long carId);
 
+    Car updateCar (Car car);
+
 
 
 

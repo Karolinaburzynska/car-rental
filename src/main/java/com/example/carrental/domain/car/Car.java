@@ -23,9 +23,9 @@ public class Car {
 
     @Column(name = "cost_per_day")
     private BigDecimal costPerDay;
-
+/*
     @Column(name = "department")
-    private Department department;
+    private Department department;*/
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carId")
     private List<Booking> bookings;
 
@@ -33,13 +33,23 @@ public class Car {
     public Car() {
     }
 
-    public Car(Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay, Department department) {
+    public Car(Long id, Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay) {
+        this.id = id;
         this.brand = brand;
         this.dateOfProduction = dateOfProduction;
         this.color = color;
         this.costPerDay = costPerDay;
-        this.department = department;
+
     }
+
+    public Car(Brand brand, LocalDate dateOfProduction, String color, BigDecimal costPerDay) {
+        this.brand = brand;
+        this.dateOfProduction = dateOfProduction;
+        this.color = color;
+        this.costPerDay = costPerDay;
+       // this.department = department;
+    }
+
 
     public boolean isAvailableForDateRange(LocalDate startDate, LocalDate endDate) {
 
@@ -99,11 +109,5 @@ public class Car {
         this.costPerDay = costPerDay;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 }
